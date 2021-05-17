@@ -9,18 +9,18 @@
 ?>
 
 <!DOCTYPE html>
-    <html>
-        <head>
-            <title>Grafik Bar dengan ChartJS</title>
+<html>
+	<head>
+		<title>Grafik Pie dengan ChartJS</title>
             <script type="text/javascript" src="Chart.js"></script> <!-- memanggil file Chart.js agar kita bisa membuat grafik dengan menggunakan Chart.js -->
-        </head>
-        <body>
+	</head>
+	<body>
 		<div id="canvas-holder" style="width:80%">
 			<canvas id="chart-area"></canvas>
 		</div>
 		<script>
 			var config = {
-				type: 'bar',
+				type: 'pie',
 				data: {
 					datasets: [{
 						data:<?php echo json_encode($total_cases); ?>,//untuk menampilkan jumlah kasus tiap negara
@@ -62,5 +62,5 @@
 				window.myPie = new Chart(ctx, config);
 			};
 		</script>
-	    </body>
-    </html>
+	</body>
+</html>
