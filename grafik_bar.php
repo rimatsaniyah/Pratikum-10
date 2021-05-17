@@ -9,58 +9,40 @@
 ?>
 
 <!DOCTYPE html>
-    <html>
-        <head>
-            <title>Grafik Bar dengan ChartJS</title>
-            <script type="text/javascript" src="Chart.js"></script> <!-- memanggil file Chart.js agar kita bisa membuat grafik dengan menggunakan Chart.js -->
-        </head>
-        <body>
-		<div id="canvas-holder" style="width:80%">
-			<canvas id="chart-area"></canvas>
-		</div>
-		<script>
-			var config = {
-				type: 'bar',
-				data: {
-					datasets: [{
-						data:<?php echo json_encode($total_cases); ?>,//untuk menampilkan jumlah kasus tiap negara
-						backgroundColor: [ //warna yang digunakan untuk bagian dalam chart
-						'rgba(242, 130, 2, 0.2)',
-						'rgba(54, 162, 235, 0.2)',
-						'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)',
-						'rgba(0, 247, 255, 0.2)',
-						'rgba(81, 240, 7, 0.2)',
-						'rgba(170, 7, 240, 0.2)',
-						'rgba(255, 0, 170, 0.2)',
-						'rgba(85, 0, 255, 0.2)',
-						'rgba(255, 99, 132, 0.2)'
-						],
-						
-						borderColor: [ //warna garis batas dari setiap bagian grafik.
-						'rgba(242, 130, 2, 1)',
-						'rgba(54, 162, 235, 1)',
-						'rgba(255, 206, 86, 1)',
-						'rgba(75, 192, 192, 1)',
-						'rgba(0, 247, 255, 1)',
-						'rgba(81, 240, 7, 1)',
-						'rgba(170, 7, 240, 1)',
-						'rgba(255, 0, 170, 1)',
-						'rgba(85, 0, 255, 1)',
-						'rgba(255,99,132,1)'
-						],
-						label: 'Presentase Total Kasus'
-					}],
-					labels: <?php echo json_encode($country); ?>},
-				options: {
-					responsive: true
-				}
-			};
-
-			window.onload = function() { //untuk meload grafik ketika laman dimuat
-				var ctx = document.getElementById('chart-area').getContext('2d');
-				window.myPie = new Chart(ctx, config);
-			};
-		</script>
-	    </body>
-    </html>
+	<html>
+		<head>
+			<title>Grafik Bar dengan ChartJS</title>
+		</head>
+		<script type="text/javascript" src="Chart.js"></script>
+		<body>
+			<div style="width: 950px;height: 500px">
+				<canvas id="myChart"></canvas>
+			</div>
+				<script>
+				var ctx = document.getElementById("myChart").getContext('2d');
+				var myChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: <?php echo json_encode($country); ?>,
+						datasets: [{
+							label: 'Total Kasus',
+							data: <?php echo json_encode($total_cases); ?>,
+							backgroundColor: 'rgba(170, 7, 240, 0.2)',
+							borderColor: 'rgba(170, 7, 240, 1)',
+							borderWidth: 2
+						}]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero:true
+								}
+							}]
+						}
+					}
+				});
+			</script>
+		</body>
+	</html>
+	
